@@ -1,4 +1,4 @@
-package com.tenshun.rest.controller;
+package com.tenshun.web;
 
 
 import com.tenshun.model.dto.UserDTO;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@Controller("/api")
+@Controller
 public class AuthController {
 
 

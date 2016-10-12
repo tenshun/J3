@@ -1,4 +1,4 @@
-package com.tenshun.rest.controller;
+package com.tenshun.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +11,10 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.security.Principal;
 
 @Controller
-public class HelloController {
+public class WelcomeController {
 
     @RequestMapping("/")
-    public String base(Principal principal, Model model){
+    public String base(Model model){
         return "redirect:welcome";
     }
 
