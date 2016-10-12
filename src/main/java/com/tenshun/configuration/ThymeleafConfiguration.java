@@ -1,9 +1,6 @@
-package com.tenshun.configuratino;
+package com.tenshun.configuration;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Description;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
 public class ThymeleafConfiguration {

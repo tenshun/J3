@@ -1,4 +1,4 @@
-package com.tenshun.configuratino;
+package com.tenshun.configuration;
 
 import com.tenshun.security.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
