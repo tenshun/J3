@@ -42,7 +42,7 @@ public class User extends BaseEntity {
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-            name = "user_authority",
+            name = "app_user_authority",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
     private Set<Role> authorities = new HashSet<>();

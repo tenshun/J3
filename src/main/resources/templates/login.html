@@ -1,21 +1,32 @@
-<html>
-<head></head>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login page</title>
+
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
 <body>
-<h1>Login</h1>
-<form name='f' action="api/users/login" method='POST'>
-    <table>
-        <tr>
-            <td>User:</td>
-            <td><input type='text' name='username' value=''></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password' /></td>
-        </tr>
-        <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
-        </tr>
-    </table>
-</form>
+<h2 class="form-signin-heading">Login page</h2>
+<p th:if="${loginError}">Wrong user or password</p>
+<div class="container">
+    <form th:action="@{/api/authenticate}" method="post">
+        <label for="username" class="sr-only">Username</label>:
+        <input type="text" id="username" class="form-control" name="username" placeholder="Username"/> <br/>
+
+        <label for="password" class="sr-only">Password</label>:
+        <input type="password" id="password" class="form-control" name="password" placeholder="Password"/> <br/>
+
+        <!--<div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>-->
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
+
 </body>
 </html>
