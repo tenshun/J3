@@ -9,9 +9,4 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RegistrationController {
 
-
-    @RequestMapping(value = "/new-user", method = RequestMethod.POST)
-    public String createNewUser(@Validated UserDTO userDTO){
-        return ""; //TODO
-    }
 }

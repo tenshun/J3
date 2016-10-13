@@ -7,14 +7,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class RegForm { //TODO add to /resources message_en/message_ru.properties
 
     @NotNull
     @NotEmpty
-    //@Min(4)
-    @Pattern(regexp = "^[a-zA-Z0-9_]*$",
-            message = "Имя пользователя должно быть длиннее 4 символов и состоять из цифр и букв английского алфавита") //for alphanumeric
+    @Size(min = 4)
+    @Pattern(regexp = "^[a-zA-Z0-9_]*$") //for alphanumeric
     private String login;
 
 
@@ -27,9 +27,8 @@ public class RegForm { //TODO add to /resources message_en/message_ru.properties
 
     @NotNull
     @NotEmpty
-    //@Min(8)
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$",
-            message = "Пароль недостаточно сложен: должны быть цифры, заглавные и строчные буквы и длина минимум 8 символов")
+    @Size(min = 8)
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")
     private String password;
     private String matchingPassword;
 

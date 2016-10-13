@@ -3,7 +3,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>Login page</title>
 
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -12,26 +11,109 @@
 
 </head>
 <body>
-<h2 class="form-signin-heading">Login page</h2>
-<p th:if="${loginError}">Wrong user or password</p>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right" th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label for="username" class="sr-only">Username</label>:
+                    <input type="text" id="username" class="form-control" name="username" placeholder="Username"/> <br/>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="sr-only">Password</label>:
+                    <input type="password" id="password" class="form-control" name="password" placeholder="Password"/>
+                    <br/>
+                </div>
+
+                <!--<div class="form-group">
+                    <input type="text" placeholder="Username" name="username" id="username" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" name="password" id="password" class="form-control"/>
+                </div>-->
+                <button type="submit" class="btn btn-success">Sign in</button>
+                <a href="/join" role="button" class="btn btn-info">Sign up</a>
+            </form>
+
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+
+<!--<p th:if="${loginError}">Wrong user or password</p>
 <p th:if="${logout}">You are successfully logged out</p>
 <div class="container">
+    <h2 class="form-signin-heading">Login page</h2>
     <form th:action="@{/login}" method="post">
-        <label for="username" class="sr-only">Username</label>:
-        <input type="text" id="username" class="form-control" name="username" placeholder="Username"/> <br/>
-
-        <label for="password" class="sr-only">Password</label>:
-        <input type="password" id="password" class="form-control" name="password" placeholder="Password"/> <br/>
+        <div class="form-group col-xs-3">
+            <label for="username" class="sr-only">Username</label>:
+            <input type="text" id="username" class="form-control" name="username" placeholder="Username"/> <br/>
 
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <label for="password" class="sr-only">Password</label>:
+            <input type="password" id="password" class="form-control" name="password" placeholder="Password"/> <br/>
 
-        <div class="login-register">
-            <a href="/join">Join</a>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+            <div class="login-register">
+                <a href="/join">Join</a>
+            </div>
         </div>
     </form>
 
+</div>-->
 
+<div class="jumbotron">
+    <div class="container">
+        <h1>Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a
+            jumbotron and three supporting pieces of content. Use it as a starting point to create something more
+            unique.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+                euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+                euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
+                porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+                fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2016 Company, Inc.</p>
+    </footer>
 </div>
 
 </body>

@@ -32,17 +32,13 @@
         <div class="main-login main-center">
             <form class="form-horizontal" th:action="@{/join}" method="post">
 
-                <p th:if="${formError}">Wrong input</p>
-                <p th:if="${loginExistsError}">Wrong input</p>
-                <p th:if="${emailExistsError}">Wrong input</p>
-
-
                 <div class="form-group">
                     <label for="email" class="cols-sm-2 control-label">Your Email</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                            <input type="text" th:field="*{email}" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error message</td>
                         </div>
                     </div>
                 </div>
@@ -52,7 +48,8 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="login" id="login"  placeholder="Enter your Username"/>
+                            <input type="text" th:field="*{login}" class="form-control" name="login" id="login"  placeholder="Enter your Username"/>
+                            <td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Username error message</td>
                         </div>
                     </div>
                 </div>
@@ -62,7 +59,8 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                            <input type="password" th:field="*{password}" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error message</td>
                         </div>
                     </div>
                 </div>

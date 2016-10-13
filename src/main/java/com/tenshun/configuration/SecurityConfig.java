@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                          The URL to redirect to after logout has occurred.
                          The default is /login?logout.
 
-                         Let’s you specify a custom LogoutSuccessHandler.
+                         Lets you specify a custom LogoutSuccessHandler.
                          If this is specified, logoutSuccessUrl() is ignored.
 
                          Specify whether to invalidate the HttpSession at the time of logout.
