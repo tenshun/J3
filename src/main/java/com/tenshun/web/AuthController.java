@@ -43,7 +43,7 @@ public class AuthController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+        return "redirect:/login?logout";
     }
 
     @RequestMapping(value = "/join", method = RequestMethod.GET)
@@ -68,23 +68,12 @@ public class AuthController {
             model.addAttribute("emailExistsError", "Email already in use");
             return "join";
         } else {
-            User newUser = userService.createUser(regForm.getLogin(), regForm.getPassword(), regForm.getEmail());
+            userService.createUser(regForm.getLogin(), regForm.getPassword(), regForm.getEmail());
 
             return "redirect:/welcome";
         }
 
     }
-
-    /*@RequestMapping("/login")
-    public String errorAuth(Model model){
-        model.addAttribute("error", true);
-        return "error";
-    }*/
-
-    /*@RequestMapping(value = "/users/login", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> auth(@Valid UserDTO userDTO) {
-
-    }*/
 
 
 }
