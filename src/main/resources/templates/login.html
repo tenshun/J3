@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
     <title>Login page</title>
 
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="/static/main.css"/>
+
 </head>
 <body>
 <h2 class="form-signin-heading">Login page</h2>
 <p th:if="${loginError}">Wrong user or password</p>
+<p th:if="${logout}">You are successfully logged out</p>
 <div class="container">
-    <form th:action="@{/api/authenticate}" method="post">
+    <form th:action="@{/login}" method="post">
         <label for="username" class="sr-only">Username</label>:
         <input type="text" id="username" class="form-control" name="username" placeholder="Username"/> <br/>
 
         <label for="password" class="sr-only">Password</label>:
         <input type="password" id="password" class="form-control" name="password" placeholder="Password"/> <br/>
 
-        <!--<div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>-->
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+        <div class="login-register">
+            <a href="/join">Join</a>
+        </div>
     </form>
+
+
 </div>
 
 </body>
