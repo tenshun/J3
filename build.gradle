@@ -51,6 +51,7 @@ configurations {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web')
@@ -61,6 +62,8 @@ dependencies {
     compile 'postgresql:postgresql:9.1-901-1.jdbc4'
     /*compile 'org.yaml:snakeyaml:1.8'*/
 
+    compile('net.sf.dozer:dozer:5.5.1')
+    compile('net.sf.dozer:dozer-spring:5.5.1')
 
     //WEBJARS
     compile('org.webjars:bootstrap:3.3.5')

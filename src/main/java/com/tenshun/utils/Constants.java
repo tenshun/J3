@@ -10,6 +10,8 @@ public final class Constants {
 
     public static final String ANONYMOUS = "ROLE_ANONYMOUS";
 
+    public static final String JSESSION_ID = "JSESSIONID";
+
     private Constants() {
     }
 }
