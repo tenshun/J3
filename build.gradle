@@ -73,3 +73,24 @@ dependencies {
     /*providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')*/
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+task buildDocker(type: Exec) {
+    doFirst {
+        copy {
+            from "src/main/docker/"
+            into "build/docker/"
+            include "*"
+        }
+        copy {
+            from "build/libs"
+            into "build/docker/"
+            include "*.war*"
+        }
+    }
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine 'cmd', '/c', 'docker', 'build', '-f', 'build/docker/Dockerfile', '-t', 'test2', 'build/docker/'
+    } else {
+        commandLine 'docker', 'build', '-f', 'build/docker/Dockerfile', '-t', 'jun-test-2', 'build/docker/'
+    }
+}
+

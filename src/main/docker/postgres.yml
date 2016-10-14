@@ -1,0 +1,12 @@
+version: '2'
+services:
+    j3-postgresql:
+        container_name: j3-postgresql
+        image: postgres:9.4.9
+        # volumes:
+        #     - ~/volumes/jhipster/test2/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - 5434:5434
