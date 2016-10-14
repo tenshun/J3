@@ -35,6 +35,7 @@
 
     <div class="starter-template">
 
+        <p th:if="${redirectedFromJoin}" th:text="You need logout to register new user">You need logout to register new user</p>
 
         <p class="lead" th:text="'Hello, ' + ${name} + '!' + ' Timezone: ' + ${timezone}">Use this document as a way to quickly start any new project.<br/> All you get is this text and a
             mostly barebones HTML document.</p>

@@ -1,6 +1,7 @@
 package com.tenshun.web.form;
 
 
+import com.tenshun.web.form.validation.PasswordMatches;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+@PasswordMatches
 public class RegForm { //TODO add to /resources message_en/message_ru.properties
 
     @NotNull

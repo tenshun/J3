@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="main-login main-center">
-            <form class="form-horizontal" th:action="@{/join}" method="post">
+            <form class="form-horizontal" th:action="@{/join}" th:object="${regForm}" method="post">
 
                 <div class="form-group">
                     <label for="email" class="cols-sm-2 control-label">Your Email</label>
@@ -39,6 +39,7 @@
                             <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                             <input type="text" th:field="*{email}" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
                             <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error message</td>
+                            <td th:if="${emailExistsError}">Email already in use</td>
                         </div>
                     </div>
                 </div>
@@ -50,6 +51,7 @@
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                             <input type="text" th:field="*{login}" class="form-control" name="login" id="login"  placeholder="Enter your Username"/>
                             <td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Username error message</td>
+                            <td th:if="${loginExistsError}">Login already in use</td>
                         </div>
                     </div>
                 </div>
@@ -71,6 +73,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                             <input type="password" class="form-control" name="matchingPassword" id="matchingPassword"  placeholder="Confirm your Password"/>
+                            <td th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}">Password error message</td>
                         </div>
                     </div>
                 </div>
