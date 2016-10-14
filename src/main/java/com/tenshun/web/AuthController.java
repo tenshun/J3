@@ -46,11 +46,11 @@ public class AuthController {
     @RequestMapping(value = "/join", method = RequestMethod.GET)
     public String signUpGet(Model model) {
 
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null) {
+        /*if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null) {
             model.addAttribute("redirectedFromJoin", "You need logout to register new user");
 
             return "redirect:/welcome";
-        }
+        }*/
         RegForm form = new RegForm();
         model.addAttribute("regForm", form);
         return "join";
@@ -65,7 +65,7 @@ public class AuthController {
         }
 
         if (userRepository.findOneByLogin(regForm.getLogin().toLowerCase()).isPresent()) {
-            model.addAttribute("loginExistError", "Login already exists");
+            model.addAttribute("loginExistsError", "Login already exists");
             return "join";
         } else if (userRepository.findOneByEmail(regForm.getEmail()).isPresent()) {
             model.addAttribute("emailExistsError", "Email already in use");
