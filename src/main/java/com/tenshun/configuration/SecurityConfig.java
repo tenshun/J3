@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/test", "/join").permitAll()
                 .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/resources*","/static*", "/resources/public*").permitAll()
                 .anyRequest().authenticated()
                     .and()
                 .formLogin()
@@ -84,11 +86,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                          */
                     .and()
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/join", "/about").permitAll()
                     .antMatchers("/api/register").permitAll()
                     .antMatchers("/api/authenticate").permitAll()
-                    .antMatchers("/api/account/reset_password/init").permitAll()
-                    .antMatchers("/api/account/reset_password/finish").permitAll()
                     .antMatchers("/api/profile-info").permitAll()
                     .antMatchers("/api*").authenticated()
                 .and()
@@ -100,7 +99,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER").and()
-                .withUser("admin").password("password").roles("USER", "ADMIN");
+                .withUser("user2").password("password").roles("USER").and()
+                .withUser("admin2").password("password").roles("USER", "ADMIN");
     }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**");
+    }
+
 }

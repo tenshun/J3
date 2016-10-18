@@ -43,9 +43,9 @@
         </thead>
         <tbody>
         <tr th:each="user : ${userlist}">
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.login}"></td>
+            <td th:text="${user.id}">1</td>
+            <td th:text="${user.email}">George</td>
+            <td th:text="${user.login}">gwash</td>
         </tr>
         </tbody>
     </table>

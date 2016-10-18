@@ -3,12 +3,11 @@
 <head>
     <meta name="viewport" content="width=device-width"/>
 
-    <script src="/webjars/jquery/2.1.4/jquery.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
-    <script src="/webjars/angularjs/1.5.8/angular-aria.js"></script>
-    <script src="/webjars/angularjs/1.5.8/angular.js"></script>
-
-    <script src="webjars/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!--<script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
 
 
@@ -22,11 +21,11 @@
     <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'/>
     <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'/>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
 
     <title>Registration Page</title>
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-strict-di="ng-strict-di">
 <div class="container">
     <div class="row main">
         <div class="panel-heading">
@@ -48,7 +47,7 @@
 
         <div class="main-login main-center">
 
-            <form class="form-horizontal" th:action="@{/join}" th:object="${regForm}" name="regForm" method="post">
+            <form class="form-horizontal" th:action="@{/join}" th:object="${regForm}"  name="regForm" method="post">
 
                 <div class="form-group">
                     <label for="email" class="cols-sm-2 control-label">Your Email</label>
@@ -61,7 +60,7 @@
                                    placeholder="Enter your Email"
                                    ng-minlength="5" ng-maxlength="100" ng-model="regForm.email" required="required"/>
                             <!--<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error message</td>-->
-                            <div ng-show="regForm.email.$dirty &amp;&amp; regForm.email.$invalid">
+                            <div ng-show="regForm.email.$dirty and regForm.email.$invalid">
                                 <p class="help-block"
                                    ng-show="regForm.email.$error.required">
                                     Your e-mail is required.
@@ -89,30 +88,9 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                             <input type="text" th:field="*{login}" class="form-control" name="login" id="login"
-                                   placeholder="Enter your Username" required="required" ng-minlength="4"
-                                   ng-maxlength="50"
-                                   ng-pattern="/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).*$/" ng-model="regForm.login"/>
+                                   placeholder="Enter your Username" required="required"/>
                             <!--<td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Username error message</td>-->
 
-                            <div ng-show="regForm.login.$dirty &amp;&amp; regForm.login.$invalid">
-                                <p class="help-block"
-                                   ng-show="regForm.login.$error.required">
-                                    Your username is required.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="regForm.login.$error.minlength">
-                                    Your username is required to be at least 4 character.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="regForm.login.$error.maxlength">
-                                    Your username cannot be longer than 50 characters.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="regForm.login.$error.pattern">
-                                    Your username must contain at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1
-                                    Number
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -124,64 +102,41 @@
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                             <input type="password" th:field="*{password}" class="form-control" name="password"
                                    id="password"
-                                   placeholder="Enter your Password" required="required" ng-model="regForm.password"/>
-                            <!--<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error
+                                   placeholder="Enter your Password" required="required"/>
+                            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error
                                 message
-                            </td>-->
+                            </td>
+                        </div>
+                        <password-strength-bar password-to-check="vm.registerAccount.password"></password-strength-bar>
+                    </div>
+                </div>
 
-                            <div ng-show="regForm.password.$dirty &amp;&amp; regForm.password.$invalid">
-                                <p class="help-block"
-                                   ng-show="regForm.password.$error.required">
-                                    Your password is required.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="regForm.password.$error.minlength">
-                                    Your password is required to be at least 4 characters.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="regForm.password.$error.maxlength">
-                                    Your password cannot be longer than 50 characters.
-                                </p>
-                            </div>
-
+                <div class="form-group">
+                    <label for="matchingPassword" class="cols-sm-2 control-label">Confirm Password</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="matchingPassword" id="matchingPassword"
+                                   placeholder="Confirm your Password" required="required"/>
+                            <td th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}">
+                                Password error message
+                            </td>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="matchingPassword" class="cols-sm-2 control-label">Confirm Password</label>
-                        <div class="cols-sm-10">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-lock fa-lg"
-                                                                   aria-hidden="true"></i></span>
-                                <input type="password" class="form-control" name="matchingPassword"
-                                       id="matchingPassword"
-                                       placeholder="Confirm your Password" required="required"/>
-                                <!--<td th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}">
-                                    Password error message
-                                </td>-->
-                            </div>
-                        </div>
-                    </div>
+                </div>
 
 
-                    <button type="submit" ng-disabled="regForm.$invalid"
-                            class="btn btn-primary btn-lg btn-block login-button">Register
-                    </button>
-                    <div class="login-register">
-                        <a href="/login">Login</a>
-                    </div>
+                <button type="submit" ng-disabled="regForm.$invalid"
+                        class="btn btn-primary btn-lg btn-block login-button">Register
+                </button>
+                <div class="login-register">
+                    <a href="/login">Login</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<script>
-    var app = angular.module("app", []);
-    app.controller("myCtrl", function ($scope) {
-
-    });
-</script>
 
 </body>
 </html>
