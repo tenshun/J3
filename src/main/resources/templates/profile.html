@@ -1,0 +1,56 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello Thymeleaf!</title>
+
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="/api/users">Users API</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/users">User management</a></li>
+                <li><a href="/logout">Quit</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="starter-template">
+
+        <div class="span8">
+            <form class="form-horizontal" th:action="@{/profile}" th:object="${profile}" novalidate="novalidate"
+                  name="profile" method="post">
+
+                <input th:text="${profile.login}"></input>
+                <input th:text="${profile.email}"></input>
+                <input th:text="${timezone}"></input>
+
+                <h6><a href="#">More... </a></h6>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

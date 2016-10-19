@@ -1,8 +1,11 @@
 package com.tenshun.web;
 
+import com.tenshun.repository.UserRepository;
 import groovy.lang.Grab;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,7 +18,8 @@ import java.util.TimeZone;
 @Controller
 public class WelcomeController {
 
-    @Grab("org.webjars:bootstrap:3.3.5")
+    @Autowired
+    private UserRepository userRepository;
 
 
     @RequestMapping("/")
@@ -47,6 +51,16 @@ public class WelcomeController {
         DateFormat formatter= new SimpleDateFormat("MM/dd/yyyy HH:mm:ss Z");
         formatter.setTimeZone(timeZone);
         return formatter.format(new Date());
+    }
+
+    @GetMapping(value = "/profile")
+    public String getProfile(Principal principal, Model model){
+
+        userRepository.findOneByLogin(principal.getName()).ifPresent(user -> {
+            model.addAttribute("profile", user);
+        });
+
+        return "profile";
     }
 
 

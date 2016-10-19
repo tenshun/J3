@@ -48,7 +48,7 @@
 
         <div class="main-login main-center">
 
-            <form class="form-horizontal" th:action="@{/join}" th:object="${regForm}" name="regForm" method="post">
+            <form class="form-horizontal" th:action="@{/join}" th:object="${regForm}" novalidate="novalidate" name="regForm" method="post">
 
                 <div class="form-group">
                     <label for="email" class="cols-sm-2 control-label">Your Email</label>
@@ -59,9 +59,10 @@
                             <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                             <input type="email" th:field="*{email}" class="form-control" name="email" id="email"
                                    placeholder="Enter your Email"
-                                   ng-minlength="5" ng-maxlength="100" ng-model="regForm.email" required="required"/>
-                            <!--<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error message</td>-->
-                            <div ng-show="regForm.email.$dirty &amp;&amp; regForm.email.$invalid">
+                                    required="required"/>
+                            <!--ng-minlength="5" ng-maxlength="100" ng-model="regForm.email"-->
+                            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error message</td>
+                            <!--<div ng-show="regForm.email.$dirty &amp;&amp; regForm.email.$invalid">
                                 <p class="help-block"
                                    ng-show="regForm.email.$error.required">
                                     Your e-mail is required.
@@ -78,7 +79,7 @@
                                    ng-show="regForm.email.$error.maxlength">
                                     Your e-mail cannot be longer than 100 characters.
                                 </p>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -89,12 +90,13 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                             <input type="text" th:field="*{login}" class="form-control" name="login" id="login"
-                                   placeholder="Enter your Username" required="required" ng-minlength="4"
+                                   placeholder="Enter your Username" required="required" />
+                            <td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Username error message</td>
+                            <!--ng-minlength="4"
                                    ng-maxlength="50"
-                                   ng-pattern="/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).*$/" ng-model="regForm.login"/>
-                            <!--<td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Username error message</td>-->
+                                   ng-pattern="/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).*$/" ng-model="regForm.login"-->
 
-                            <div ng-show="regForm.login.$dirty &amp;&amp; regForm.login.$invalid">
+                            <!--<div ng-show="regForm.login.$dirty &amp;&amp; regForm.login.$invalid">
                                 <p class="help-block"
                                    ng-show="regForm.login.$error.required">
                                     Your username is required.
@@ -112,7 +114,7 @@
                                     Your username must contain at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1
                                     Number
                                 </p>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -124,12 +126,13 @@
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                             <input type="password" th:field="*{password}" class="form-control" name="password"
                                    id="password"
-                                   placeholder="Enter your Password" required="required" ng-model="regForm.password"/>
-                            <!--<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error
+                                   placeholder="Enter your Password" required="required" />
+                            <!--ng-model="regForm.password"-->
+                            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error
                                 message
-                            </td>-->
+                            </td>
 
-                            <div ng-show="regForm.password.$dirty &amp;&amp; regForm.password.$invalid">
+                            <!--<div ng-show="regForm.password.$dirty &amp;&amp; regForm.password.$invalid">
                                 <p class="help-block"
                                    ng-show="regForm.password.$error.required">
                                     Your password is required.
@@ -142,7 +145,7 @@
                                    ng-show="regForm.password.$error.maxlength">
                                     Your password cannot be longer than 50 characters.
                                 </p>
-                            </div>
+                            </div>-->
 
                         </div>
                     </div>
@@ -164,9 +167,10 @@
                     </div>
 
 
-                    <button type="submit" ng-disabled="regForm.$invalid"
+                    <button type="submit"
                             class="btn btn-primary btn-lg btn-block login-button">Register
                     </button>
+                    <!--ng-disabled="regForm.$invalid"-->
                     <div class="login-register">
                         <a href="/login">Login</a>
                     </div>
