@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-@EnableRdsInstance(databaseName="j3db", dbInstanceIdentifier="db-VVNIMCVYEWMYSKUXVCDZ74W67Y", username="postgres",password="postgres")
 public class Application extends SpringBootServletInitializer {
 
     @Override

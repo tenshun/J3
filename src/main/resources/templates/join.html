@@ -48,7 +48,7 @@
 
         <div class="main-login main-center">
 
-            <form class="form-horizontal" th:action="@{/join}" th:object="${regForm}" novalidate="novalidate" name="regForm" method="post">
+            <form class="form-horizontal" th:action="@{/join}" th:object="${regForm}" name="regForm" method="post">
 
                 <div class="form-group">
                     <label for="email" class="cols-sm-2 control-label">Your Email</label>
@@ -156,9 +156,9 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg"
                                                                    aria-hidden="true"></i></span>
-                                <input type="password" class="form-control" name="matchingPassword"
+                                <input type="password" th:field="*{matchingPassword}" class="form-control" name="matchingPassword"
                                        id="matchingPassword"
-                                       placeholder="Confirm your Password" required="required"/>
+                                       placeholder="And again" required="required" />
                                 <!--<td th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}">
                                     Password error message
                                 </td>-->

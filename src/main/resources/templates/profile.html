@@ -3,8 +3,12 @@
     <meta charset="UTF-8"/>
     <title>Hello Thymeleaf!</title>
 
+    <script src="/webjars/jquery/2.1.4/jquery.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/webjars/angularjs/1.5.8/angular-aria.js"></script>
+    <script src="/webjars/angularjs/1.5.8/angular.js"></script>
+
 </head>
 <body>
 
@@ -41,16 +45,37 @@
             <form class="form-horizontal" th:action="@{/profile}" th:object="${profile}" novalidate="novalidate"
                   name="profile" method="post">
 
-                <input th:text="${profile.login}"></input>
-                <input th:text="${profile.email}"></input>
-                <input th:text="${timezone}"></input>
+                <h3 th:text="${profile.login}"></h3>
+                <h3 th:text="${profile.email}"></h3>
+                <h3 th:text="${timezone}"></h3>
 
                 <h6><a href="#">More... </a></h6>
             </form>
         </div>
+
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Timezone
+                <span class="caret"></span>
+            </button>
+            <ul  class="dropdown-menu" aria-labelledby="dropdownMenu1">
+               <!-- <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>-->
+                <li th:each="timeZoneID: ${timeZoneIDs}" th:text="${timeZoneID}">null</li>
+                <!--<li th:text="">null</li>-->
+            </ul>
+        </div>
     </div>
 
 </div>
+<script>
+    $('.dropdown-menu a').on('click', function(){
+        $('.dropdown-toggle').html($(this).html() + '<span class="caret"></span>');
+    })
+</script>
 
 </body>
 </html>

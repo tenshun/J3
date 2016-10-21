@@ -1,6 +1,11 @@
 package com.tenshun.configuration;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.dialect.SpringStandardDialect;
 
 @Configuration
 public class ThymeleafConfiguration {
@@ -17,4 +22,14 @@ public class ThymeleafConfiguration {
         emailTemplateResolver.setOrder(1);
         return emailTemplateResolver;
     }*/
+
+    @Bean
+    public SpringSecurityDialect springSecurityDialect(){
+        return new SpringSecurityDialect();
+    }
+
+    @Bean
+    public Java8TimeDialect java8TimeDialect(){
+        return new Java8TimeDialect();
+    }
 }

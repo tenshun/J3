@@ -46,11 +46,10 @@ public class AuthController {
     @RequestMapping(value = "/join", method = RequestMethod.GET)
     public String signUpGet(Model model) {
 
-        /*if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null) {
-            model.addAttribute("redirectedFromJoin", "You need logout to register new user");
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
 
             return "redirect:/welcome";
-        }*/
+        }
         RegForm form = new RegForm();
         model.addAttribute("regForm", form);
         return "join";

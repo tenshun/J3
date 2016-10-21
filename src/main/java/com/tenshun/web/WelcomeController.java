@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.security.Principal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -59,6 +61,7 @@ public class WelcomeController {
         userRepository.findOneByLogin(principal.getName()).ifPresent(user -> {
             model.addAttribute("profile", user);
         });
+        model.addAttribute("timeZoneIDs", Arrays.asList(TimeZone.getAvailableIDs()));
 
         return "profile";
     }
