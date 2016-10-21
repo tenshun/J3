@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    private static final String LOGOUT_URL = "/quit";
+    private static final String LOGOUT_URL = "/logout";
 
     @Autowired
     @Qualifier("userDetailsService")
@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .logout()
                 //.logoutUrl(LOGOUT_URL)
-                //.logoutSuccessUrl("/")
+                .logoutSuccessUrl("/login?logout")
                 .invalidateHttpSession(true)
                 .deleteCookies(Constants.JSESSION_ID)
                         /**
@@ -87,7 +87,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                          */
                     .and()
                 .authorizeRequests()
-                    .antMatchers("/api/register").permitAll()
                     .antMatchers("/api/authenticate").permitAll()
                     .antMatchers("/api*").authenticated()
                 .and()

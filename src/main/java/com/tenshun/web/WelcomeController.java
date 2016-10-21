@@ -20,9 +20,9 @@ import java.util.TimeZone;
 @Controller
 public class WelcomeController {
 
+
     @Autowired
     private UserRepository userRepository;
-
 
     @RequestMapping("/")
     public String base(Model model) {
@@ -30,16 +30,9 @@ public class WelcomeController {
     }
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
-    public String welcomeGet(Principal principal, Model model, TimeZone timeZone) {
-        model.addAttribute("timezone", timeZone.getID());
-        model.addAttribute("name", principal.getName());
-        return "welcome";
-    }
+    public String welcomeGet(Principal principal, Model model) {
 
-    @RequestMapping(value = "/welcome2", method = RequestMethod.GET)
-    public String welcomeGetWithNoPrincipal(Model model, TimeZone timeZone) {
-        model.addAttribute("timezone", determineUserTime(timeZone));
-        model.addAttribute("name", "test");
+        model.addAttribute("name", principal.getName());
         return "welcome";
     }
 
@@ -49,21 +42,11 @@ public class WelcomeController {
         return "welcome";
     }
 
-    private static String determineUserTime(TimeZone timeZone){
-        DateFormat formatter= new SimpleDateFormat("MM/dd/yyyy HH:mm:ss Z");
-        formatter.setTimeZone(timeZone);
-        return formatter.format(new Date());
-    }
 
-    @GetMapping(value = "/profile")
-    public String getProfile(Principal principal, Model model){
-
-        userRepository.findOneByLogin(principal.getName()).ifPresent(user -> {
-            model.addAttribute("profile", user);
-        });
-        model.addAttribute("timeZoneIDs", Arrays.asList(TimeZone.getAvailableIDs()));
-
-        return "profile";
+    @GetMapping(value = "/users")
+    public String getUserList(Model model){
+        model.addAttribute("userlist", userRepository.findAll());
+        return "users";
     }
 
 

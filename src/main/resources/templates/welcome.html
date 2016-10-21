@@ -29,8 +29,6 @@
                 <li class="active"><a href="/login">Home</a></li>
                 <li><a href="/api/users">Users API</a></li>
                 <li><a href="/users">User management</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin">Admin</a></li>
                 <li sec:authorize="isAuthenticated()"><a href="/logout">Quit</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -43,9 +41,8 @@
 
         <p class="lead" th:text="'Hello, ' + ${name} + '!'"></p>
 
-        <!--<p th:text="${#temporals.format(${myVariable}, 'dd/MMM/yyyy HH:mm')}"></p>-->
         <p th:text="${date}" id="date"></p>
-        <!--<p th:text="${#temporals.format(#temporals.createNowForTimeZone(timezone), 'dd/MMM/yyyy HH:mm')}"></p>-->
+
     </div>
 
 </div>

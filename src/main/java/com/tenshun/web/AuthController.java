@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,17 +31,28 @@ public class AuthController {
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
+    public String login(@RequestParam(value = "error",required = false) String error,
+                        @RequestParam(value = "logout",	required = false) String logout,
+                        Model model) {
+        if (error != null) {
+            model.addAttribute("error", "Invalid Credentials provided.");
+        }
+
+        if (logout != null) {
+            model.addAttribute("message", "Logged out from {ProjectName} successfully.");
+        }
+
+
         return "login";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/login?logout";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "/join", method = RequestMethod.GET)
